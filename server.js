@@ -1,5 +1,5 @@
-const minimist = require('minimist')
-const express = require('express')
+import minimist from 'minimist'
+import express from 'express'
 
 // Getting args, setting express const and setting to that or default of 5000
 var args = minimist(process.argv.slice(2))
@@ -58,28 +58,27 @@ const server = app.listen(port, () => {
 })
 
 app.use(function(req, res){
+    res.status(404).send("404 Not found")
     res.type("text/plain")
-    return res.status(404).send("404 Not found")
-
 })
 
 app.get('/app', (req, res) => {
+    res.status(200).end('200 OK')
     res.type('text/plain')
-    return res.status(200).end('200 OK')
 })
 
 app.get('/app/flip/', (req, res) => {
-    return res.status(200).json({'flip': coinFlip()})
+    res.status(200).json({'flip': coinFlip()})
 })
 
 app.get('/app/flips/:number/', (req, res) => {
-    return res.status(200).json({'raw': coinFlips(req.params.number), 'summary': countFlips(coinFlips(req.params.number))})
+    res.status(200).json({'raw': coinFlips(req.params.number), 'summary': countFlips(coinFlips(req.params.number))})
 })
 
 app.get('/app/flip/call/tails/', (req, res) => {
-    return res.status(200).json(flipACoin('tails'))
+    res.status(200).json(flipACoin('tails'))
 })
 
 app.get('/app/flip/call/heads/', (req, res) => {
-    return res.status(200).json(flipACoin('heads'))
+    res.status(200).json(flipACoin('heads'))
 })
