@@ -58,27 +58,28 @@ const server = app.listen(port, () => {
 })
 
 app.use(function(req, res){
-    res.status(404).send("404 Not found")
     res.type("text/plain")
-}) 
+    return res.status(404).send("404 Not found")
+
+})
 
 app.get('/app', (req, res) => {
-    res.status(200).end('200 OK')
     res.type('text/plain')
+    return res.status(200).end('200 OK')
 })
 
 app.get('/app/flip/', (req, res) => {
-    res.status(200).json({'flip': coinFlip()})
+    return res.status(200).json({'flip': coinFlip()})
 })
 
 app.get('/app/flips/:number/', (req, res) => {
-    res.status(200).json({'raw': coinFlips(req.params.number), 'summary': countFlips(coinFlips(req.params.number))})
+    return res.status(200).json({'raw': coinFlips(req.params.number), 'summary': countFlips(coinFlips(req.params.number))})
 })
 
 app.get('/app/flip/call/tails/', (req, res) => {
-    res.status(200).json(flipACoin('tails'))
+    return res.status(200).json(flipACoin('tails'))
 })
 
 app.get('/app/flip/call/heads/', (req, res) => {
-    res.status(200).json(flipACoin('heads'))
+    return res.status(200).json(flipACoin('heads'))
 })
