@@ -57,11 +57,6 @@ const server = app.listen(port, () => {
     console.log('App is runnin on %port%'.replace('%port%', port))
 })
 
-app.use(function(req, res){
-    res.status(404).send("404 Not found")
-    res.type("text/plain")
-}) 
-
 app.get('/app', (req, res) => {
     res.status(200).send('200 OK')
     res.type('text/plain')
@@ -82,3 +77,8 @@ app.get('/app/flip/call/tails/', (req, res) => {
 app.get('/app/flip/call/heads/', (req, res) => {
     res.status(200).json(flipACoin('heads'))
 })
+
+app.use(function(req, res){
+    res.status(404).send("404 Not found")
+    res.type("text/plain")
+}) 
