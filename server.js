@@ -1,5 +1,5 @@
-import minimist from 'minimist'
-import express from 'express'
+const minimist = require('minimist')
+const express = require('express')
 
 // Getting args, setting express const and setting to that or default of 5000
 var args = minimist(process.argv.slice(2))
@@ -60,7 +60,7 @@ const server = app.listen(port, () => {
 app.use(function(req, res){
     res.status(404).send("404 Not found")
     res.type("text/plain")
-})
+}) 
 
 app.get('/app', (req, res) => {
     res.status(200).end('200 OK')
