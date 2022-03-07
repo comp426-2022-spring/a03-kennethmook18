@@ -19,6 +19,6 @@
   "dependencies": {
     "express": "^4.17.3",
     "minimist": "^1.2.5",
-    "require": "^2.4.20" 
+    "require": "^0.4.4"
   }
 }
